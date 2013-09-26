@@ -1,0 +1,40 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="IndentedParser/IndentedParser.fs">
+    <Files>
+      <File FileName="UsbPhoneTracker.Mac/Sources/MainClass.cs" Line="7" Column="3" />
+      <File FileName="UsbPhoneTracker/Sources/UsbChange.cs" Line="1" Column="1" />
+      <File FileName="UsbPhoneTracker/Sources/UsbNotifier.cs" Line="1" Column="1" />
+      <File FileName="IndentedParser/IndentedParser.fs" Line="22" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True">
+          <Node name="IndentedParser" expanded="True" />
+          <Node name="UsbPhoneTracker.Common" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="Sources" expanded="True" />
+          </Node>
+          <Node name="UsbPhoneTracker.Mac" expanded="True">
+            <Node name="Sources" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="ConnectionManagerPad">
+        <State selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/Superman/Projects/UsbPhoneTracker/UsbPhoneTracker/Program.cs" line="25" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
