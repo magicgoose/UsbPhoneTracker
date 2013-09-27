@@ -7,6 +7,8 @@ namespace UsbPhoneTracker.Mac
 {
 	public static class MainClass
 	{
+
+
 		static void Main(String[] args)
 		{
 			UsbNotifier.UsbChanged += HandleUsbChanged;
@@ -19,7 +21,8 @@ namespace UsbPhoneTracker.Mac
 		{
 			if (connected)
 			{
-				var deviceInfo = DeviceInfoFinder.GetDeviceInfo(device.ProductId, device.VendorId);
+				var allDeviceInfo = DeviceInfoFinder.GetAllDevicesInfo();
+				var deviceInfo = allDeviceInfo.FirstOrDefault(DeviceInfoFinder.IDMatch(device.ProductId, device.VendorId));
 				if (deviceInfo == null)
 				{
 					Console.WriteLine("Can't find connected device!");

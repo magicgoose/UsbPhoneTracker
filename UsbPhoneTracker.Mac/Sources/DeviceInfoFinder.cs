@@ -7,15 +7,7 @@ namespace UsbPhoneTracker.Mac
 {
 	public static class DeviceInfoFinder
 	{
-		public static Dictionary<String, String> GetDeviceInfo(Int32 Pid, Int32 Vid)
-		{
-			var ololo = UsbNotifier.RunCommand("system_profiler", "SPUSBDataType");
-			var grouped = GroupByConsecutive(IndentCount, GetLines(ololo));
-			var deviceGroup = FindDeviceGroup(Pid, Vid, grouped);
-			return deviceGroup;
-		}
-
-		static Boolean CheckIds(Dictionary<string, string> x, int pid, int vid)
+		public static Boolean IsIDMatch(Dictionary<string, string> x, int pid, int vid)
 		{
 			try
 			{
@@ -30,31 +22,54 @@ namespace UsbPhoneTracker.Mac
 			}
 		}
 
-		static Dictionary<String, String> FindDeviceGroup(Int32 Pid, Int32 Vid, IEnumerable<List<String>> groups)
+		public static Func<Dictionary<string, string>, Boolean> IDMatch(int pid, int vid)
+		{
+			return d => IsIDMatch(d, pid, vid);
+		}
+
+		public static IEnumerable<Dictionary<String, String>> GetAllDevicesInfo()
+		{
+			return ParseAll(
+				GroupByConsecutive(
+					IndentCount,
+					GetLines(
+						UsbNotifier.RunCommand(
+							"system_profiler",
+							"SPUSBDataType"))));
+		}
+
+		static IEnumerable<Dictionary<String, String>> ParseAll(IEnumerable<List<String>> groups)
 		{
 			try
 			{
 				return groups.Where(x => x.Count > 1)
 					.Select(ParseGroup)
-						.FirstOrDefault(x => CheckIds(x, Pid, Vid));
+					.Where(x => x != null);
 			}
 			catch
 			{
-				return null;
+				return Enumerable.Empty<Dictionary<String, String>>();
 			}
 		}
 
 		static Dictionary<String, String> ParseGroup(IEnumerable<String> group)
 		{
-			var result = new Dictionary<String, String>();
-			foreach (var line in group)
+			try
 			{
-				var kv = line.Split(':').Select(x => x.Trim()).ToArray();
-				var key = kv[0];
-				var value = kv[1];
-				result.Add(key, value);
+				var result = new Dictionary<String, String>();
+				foreach (var line in group)
+				{
+					var kv = line.Split(':').Select(x => x.Trim()).ToArray();
+					var key = kv[0];
+					var value = kv[1];
+					result.Add(key, value);
+				}
+				return result;
 			}
-			return result;
+			catch
+			{
+				return null;
+			}
 		}
 
 		static IEnumerable<String> GetLines(String x)
