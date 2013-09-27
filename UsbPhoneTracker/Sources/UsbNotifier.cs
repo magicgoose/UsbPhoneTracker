@@ -11,7 +11,7 @@ namespace UsbPhoneTracker.Common
 	{
 		static LibUsbDotNet.DeviceNotify.IDeviceNotifier _notifier;
 
-		public static event Action<UsbChange> UsbChanged;
+		public static event Action<DeviceIds, Boolean> UsbChanged;
 
 		public static void Start()
 		{
@@ -21,25 +21,29 @@ namespace UsbPhoneTracker.Common
 
 		public static void Stop()
 		{
-			UsbDevice.Exit();
+			_notifier.OnDeviceNotify -= HandleDeviceNotify;
+			_notifier.Enabled = false;
 			_notifier = null;
+			UsbDevice.Exit();
 			UsbChanged = null;
 		}
 
 		static void HandleDeviceNotify (object sender, LibUsbDotNet.DeviceNotify.DeviceNotifyEventArgs e)
 		{
 			var device = e.Device;
-			var changeInfo = new UsbChange(
+
+			var connected = e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival;
+
+			var changeInfo = new DeviceIds(
 				device.IdProduct,
-				device.IdVendor,
-				e.EventType == LibUsbDotNet.DeviceNotify.EventType.DeviceArrival);
-			ProcessUsbChange(changeInfo);
+				device.IdVendor);
+			ProcessUsbChange(changeInfo, connected);
 		}
 
-		static void ProcessUsbChange(UsbChange change)
+		static void ProcessUsbChange(DeviceIds device, Boolean connected)
 		{
 			if (UsbChanged != null)
-				UsbChanged(change);
+				UsbChanged(device, connected);
 		}
 
 		public static String RunCommand(String command, String args)

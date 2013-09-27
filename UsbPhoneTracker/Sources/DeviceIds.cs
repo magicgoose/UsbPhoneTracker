@@ -7,22 +7,20 @@ using System.Diagnostics;
 
 namespace UsbPhoneTracker.Common
 {
-	public struct UsbChange
+	public struct DeviceIds
 	{
 		public readonly Int32 ProductId;
 		public readonly Int32 VendorId;
-		public readonly Boolean Connected;
 
-		public UsbChange(int productId, int vendorId, bool connected)
+		public DeviceIds(int productId, int vendorId)
 		{
 			this.ProductId = productId;
 			this.VendorId = vendorId;
-			this.Connected = connected;
 		}
 
 		public override String ToString()
 		{
-			return String.Format("[UsbChange: ProductId={0}, VendorId={1}, Connected={2}]", ProductId, VendorId, Connected);
+			return String.Format("[UsbChange: ProductId={0}, VendorId={1}]", ProductId, VendorId);
 		}
 	}
 }

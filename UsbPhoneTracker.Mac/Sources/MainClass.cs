@@ -15,11 +15,11 @@ namespace UsbPhoneTracker.Mac
 			UsbNotifier.Stop();
 		}
 
-		static void HandleUsbChanged(UsbChange change)
+		static void HandleUsbChanged(DeviceIds device, Boolean connected)
 		{
-			if (change.Connected)
+			if (connected)
 			{
-				var deviceInfo = GetDeviceInfo(change.ProductId, change.VendorId);
+				var deviceInfo = GetDeviceInfo(device.ProductId, device.VendorId);
 				if (deviceInfo == null)
 				{
 					Console.WriteLine("Can't find connected device!");
@@ -27,8 +27,8 @@ namespace UsbPhoneTracker.Mac
 				}
 				var serialNumber = deviceInfo["Serial Number"];
 				Console.WriteLine("Vendor ID: {0}\nDevice ID: {1}\nSerial Number: {2}\n",
-					change.VendorId,
-					change.ProductId,
+					device.VendorId,
+					device.ProductId,
 					serialNumber);
 			}
 			else
@@ -68,7 +68,7 @@ namespace UsbPhoneTracker.Mac
 					.Select(ParseGroup)
 						.FirstOrDefault(x => CheckIds(x, Pid, Vid));
 			}
-			catch(Exception e)
+			catch
 			{
 				return null;
 			}
