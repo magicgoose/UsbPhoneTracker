@@ -7,24 +7,30 @@ namespace UsbPhoneTracker.Mac
 {
 	public static class DeviceInfoFinder
 	{
-		public static Boolean IsIDMatch(Dictionary<string, string> x, int pid, int vid)
+		public static Tuple<DeviceIds, String> Extract(Dictionary<string, string> x)
 		{
 			try
 			{
-				var _pid = Convert.ToInt32(x["Product ID"].Split(' ').First(), 16);
-				var _vid = Convert.ToInt32(x["Vendor ID"].Split(' ').First(), 16);
-
-				return _pid == pid && _vid == vid;
+				var pid = Convert.ToInt32(x["Product ID"].Split(' ').First(), 16);
+				var vid = Convert.ToInt32(x["Vendor ID"].Split(' ').First(), 16);
+				var serial = x["Serial Number"];
+				return Tuple.Create(new DeviceIds(pid, vid), serial);
 			}
 			catch
 			{
-				return false;
+				return null;
 			}
 		}
 
-		public static Func<Dictionary<string, string>, Boolean> IDMatch(int pid, int vid)
+		public static Boolean IsIDMatch(Dictionary<string, string> x, DeviceIds ids)
 		{
-			return d => IsIDMatch(d, pid, vid);
+			var e = Extract(x);
+			return e != null && e.Item1.Equals(ids);
+		}
+
+		public static Func<Dictionary<string, string>, Boolean> IDMatch(DeviceIds ids)
+		{
+			return d => IsIDMatch(d, ids);
 		}
 
 		public static IEnumerable<Dictionary<String, String>> GetAllDevicesInfo()

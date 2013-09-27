@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace UsbPhoneTracker.Common
 {
-	public struct DeviceIds
+	public struct DeviceIds: IEquatable<DeviceIds>
 	{
 		public readonly Int32 ProductId;
 		public readonly Int32 VendorId;
@@ -22,5 +22,14 @@ namespace UsbPhoneTracker.Common
 		{
 			return String.Format("[UsbChange: ProductId={0}, VendorId={1}]", ProductId, VendorId);
 		}
+
+		#region IEquatable implementation
+
+		public bool Equals(DeviceIds other)
+		{
+			return other.ProductId == ProductId && other.VendorId == VendorId;
+		}
+
+		#endregion
 	}
 }
