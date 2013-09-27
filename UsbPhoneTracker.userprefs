@@ -1,21 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="IndentedParser/IndentedParser.fs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="UsbPhoneTracker.Mac/Sources/MainClass.cs">
     <Files>
-      <File FileName="UsbPhoneTracker.Mac/Sources/MainClass.cs" Line="7" Column="3" />
-      <File FileName="UsbPhoneTracker/Sources/UsbChange.cs" Line="1" Column="1" />
-      <File FileName="UsbPhoneTracker/Sources/UsbNotifier.cs" Line="1" Column="1" />
-      <File FileName="IndentedParser/IndentedParser.fs" Line="22" Column="18" />
+      <File FileName="UsbPhoneTracker.Mac/Sources/MainClass.cs" Line="63" Column="5" />
+      <File FileName="UsbPhoneTracker/Sources/UsbChange.cs" Line="20" Column="17" />
+      <File FileName="UsbPhoneTracker/Sources/UsbNotifier.cs" Line="43" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Node name="IndentedParser" expanded="True" />
+        <State expanded="True">
           <Node name="UsbPhoneTracker.Common" expanded="True">
             <Node name="References" expanded="True" />
             <Node name="Sources" expanded="True" />
+            <Node name="libusb-1.0.dylib" selected="True" />
           </Node>
           <Node name="UsbPhoneTracker.Mac" expanded="True">
+            <Node name="References" expanded="True" />
             <Node name="Sources" expanded="True" />
           </Node>
         </State>

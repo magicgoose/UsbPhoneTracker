@@ -17,15 +17,24 @@ namespace UsbPhoneTracker.Mac
 
 		static void HandleUsbChanged(UsbChange change)
 		{
-			Console.WriteLine(change);
-
-			Console.WriteLine("==================");
-			var dg = GetDeviceInfo(change.ProductId, change.VendorId);
-			if (dg != null)
-				foreach (var l in dg)
+			if (change.Connected)
+			{
+				var deviceInfo = GetDeviceInfo(change.ProductId, change.VendorId);
+				if (deviceInfo == null)
 				{
-					Console.WriteLine(l);
+					Console.WriteLine("Can't find connected device!");
+					return;
 				}
+				var serialNumber = deviceInfo["Serial Number"];
+				Console.WriteLine("Vendor ID: {0}\nDevice ID: {1}\nSerial Number: {2}\n",
+					change.VendorId,
+					change.ProductId,
+					serialNumber);
+			}
+			else
+			{
+				Console.WriteLine("A device has been disconnected\n");
+			}
 		}
 
 		static Dictionary<String, String> GetDeviceInfo(Int32 Pid, Int32 Vid)
@@ -61,7 +70,6 @@ namespace UsbPhoneTracker.Mac
 			}
 			catch(Exception e)
 			{
-				Console.WriteLine(e);
 				return null;
 			}
 		}
