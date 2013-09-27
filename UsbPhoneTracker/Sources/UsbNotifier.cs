@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace UsbPhoneTracker.Common
 {
-	public class UsbNotifier
+	public static class UsbNotifier
 	{
 		static LibUsbDotNet.DeviceNotify.IDeviceNotifier _notifier;
 
