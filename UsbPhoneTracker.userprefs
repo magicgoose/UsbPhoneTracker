@@ -2,20 +2,17 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="UsbPhoneTracker.Mac/Sources/MainClass.cs">
     <Files>
-      <File FileName="UsbPhoneTracker.Mac/Sources/MainClass.cs" Line="25" Column="3" />
-      <File FileName="UsbPhoneTracker.Mac/Sources/DeviceInfoFinder.cs" Line="33" Column="32" />
-      <File FileName="UsbPhoneTracker/Sources/DeviceIds.cs" Line="30" Column="70" />
-      <File FileName="UsbPhoneTracker/Sources/UsbNotifier.cs" Line="20" Column="4" />
+      <File FileName="UsbPhoneTracker.Mac/Sources/MainClass.cs" Line="63" Column="5" />
+      <File FileName="UsbPhoneTracker/Sources/UsbChange.cs" Line="20" Column="17" />
+      <File FileName="UsbPhoneTracker/Sources/UsbNotifier.cs" Line="43" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Tests" expanded="True">
-            <Node name="References" expanded="True" selected="True" />
-          </Node>
           <Node name="UsbPhoneTracker.Common" expanded="True">
             <Node name="References" expanded="True" />
             <Node name="Sources" expanded="True" />
+            <Node name="libusb-1.0.dylib" selected="True" />
           </Node>
           <Node name="UsbPhoneTracker.Mac" expanded="True">
             <Node name="References" expanded="True" />
@@ -28,9 +25,6 @@
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State />
-      </Pad>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
       </Pad>
       <Pad Id="ConnectionManagerPad">
         <State selected="True" />
